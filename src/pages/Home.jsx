@@ -6,7 +6,7 @@ import { Icon } from "leaflet";
 
 // create custom icon
 const customIcon = new Icon({
-	iconUrl: "src/assets/maps-and-flags.png",
+	iconUrl: "/assets/maps-and-flags.png",
 	iconSize: [38, 38], // size of the icon
 });
 
