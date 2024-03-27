@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { styled, useTheme } from "@mui/material/styles";
@@ -15,6 +15,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import PersonIcon from "@mui/icons-material/Person";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -25,14 +26,12 @@ import MailIcon from "@mui/icons-material/Mail";
 import Navbar from "./Navbar";
 import Chart from "../components/Chart";
 import Sidebar from "../components/Sidebar";
+import DataTable from "../components/DataTable";
 
 function Items() {
 	const { id } = useParams();
 	const theme = useTheme();
-	const [expand, setExpand] = React.useState(false);
-	const toggleExpand = () => {
-		setExpand(!expand);
-	};
+	const [open, setOpen] = React.useState(true);
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
@@ -41,19 +40,87 @@ function Items() {
 	const handleDrawerClose = () => {
 		setOpen(false);
 	};
+	// logic
+	const [selectedCard, setSelectedCard] = useState("1");
+	const onSelectCard = (id) => {
+		setSelectedCard(id);
+	};
 
 	return (
 		<div style={{ width: "100%", height: "100%" }}>
 			<Navbar />
-			<div style={{ display: "flex" }}>
-				{expand && <Sidebar />}
-				<Chart id={id} toggleExpand={toggleExpand} />
-			</div>
+			<Box sx={{ display: "flex" }}>
+				<CssBaseline />
+				<AppBar position="fixed" open={open}>
+					<Toolbar
+						sx={{
+							backgroundColor: "#111111",
+							justifyContent: "space-between",
+						}}
+					>
+						<IconButton
+							color="inherit"
+							aria-label="open drawer"
+							onClick={handleDrawerOpen}
+							edge="start"
+							sx={{ mr: 2, ...(open && { display: "none" }) }}
+						>
+							<ArrowForwardIosIcon />
+						</IconButton>
+						{/* <Typography variant="h6" noWrap component="div">
+							Persistent drawer
+						</Typography> */}
+						<IconButton
+							color="inherit"
+							aria-label="open drawer"
+							onClick={handleDrawerOpen}
+							edge="start"
+							sx={{ mr: 2, ...(open && { display: "none" }) }}
+						>
+							<PersonIcon />
+						</IconButton>
+					</Toolbar>
+				</AppBar>
+				<Drawer
+					sx={{
+						width: drawerWidth,
+						flexShrink: 0,
+						"& .MuiDrawer-paper": {
+							backgroundColor: "#222222",
+							width: drawerWidth,
+							boxSizing: "border-box",
+						},
+					}}
+					variant="persistent"
+					anchor="left"
+					open={open}
+				>
+					<DrawerHeader>
+						<IconButton onClick={handleDrawerClose}>
+							{theme.direction === "ltr" ? (
+								<ChevronLeftIcon sx={{ color: "white" }} />
+							) : (
+								<ChevronRightIcon />
+							)}
+						</IconButton>
+					</DrawerHeader>
+					<Divider />
+					<Sidebar
+						selectedCard={selectedCard}
+						onSelectCard={onSelectCard}
+					/>
+				</Drawer>
+				<Main open={open} sx={{ overflow: "hidden" }}>
+					<DrawerHeader />
+					<Chart id={id} selectedCard={selectedCard} />
+					<DataTable id={id} selectedCard={selectedCard} />
+				</Main>
+			</Box>
 		</div>
 	);
 }
 
-const drawerWidth = 240;
+const drawerWidth = 350;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
 	({ theme, open }) => ({
