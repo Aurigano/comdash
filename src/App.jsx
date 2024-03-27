@@ -4,13 +4,13 @@ import Home from "./pages/Home";
 import Items from "./pages/Items";
 
 function App() {
-	return (
-		<Routes>
-			{/* <Route path="/" element={<Layout />} /> */}
-			<Route path="/" element={<Home />} />
-			<Route path="item" element={<Items />} />
-		</Routes>
-	);
+  return (
+    <Routes>
+      {/* <Route path="/" element={<Layout />} /> */}
+      <Route path="/" element={<Home />} />
+      <Route path="item/:id" element={<Items />} />
+    </Routes>
+  );
 }
 
 // function Layout() {
