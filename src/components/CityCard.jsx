@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import TinyLineChart from "./TinyLineChart";
+import PropTypes from "prop-types";
 
 const CityCard = ({ city }) => {
 	const navigate = useNavigate();
@@ -76,3 +77,13 @@ const CityCard = ({ city }) => {
 };
 
 export default CityCard;
+
+CityCard.propTypes = {
+	city: PropTypes.shape({
+		name: PropTypes.string,
+		sales: PropTypes.string,
+		revenue: PropTypes.string,
+		revData: PropTypes.arrayOf(PropTypes.number),
+		salesData: PropTypes.arrayOf(PropTypes.number),
+	}),
+};

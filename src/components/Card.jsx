@@ -1,5 +1,5 @@
-import { Box, Button, Checkbox } from "@mui/material";
-import React from "react";
+import { Box, Button, Checkbox, Typography } from "@mui/material";
+import PropTypes from "prop-types";
 
 function Card({ data, onSelectCard, selectedCard }) {
 	const isSelected = selectedCard === data.id;
@@ -12,17 +12,33 @@ function Card({ data, onSelectCard, selectedCard }) {
 				gap: 1,
 				padding: 2,
 				backgroundColor: isSelected ? "#555555" : "#333333",
+				color: "white",
 			}}
 			onClick={() => {
 				onSelectCard(data.id);
 			}}
 		>
-			<Checkbox checked={isSelected} />
-			{data.id}
-			<Button variant="contained">F'cast Stab</Button>
-			<Button variant="contained">F'cast Acc</Button>
+			<Checkbox
+				checked={isSelected}
+				sx={{ color: "white", "&.Mui-checked": { color: "white" } }}
+			/>
+			<Typography variant="h6">{data.id}</Typography>
+			<Button variant="contained" sx={{ backgroundColor: "#295D8A" }}>
+				F&apos;cast Stab
+			</Button>
+			<Button variant="contained" sx={{ backgroundColor: "#295D8A" }}>
+				F&apos;cast Acc
+			</Button>
 		</Box>
 	);
 }
 
 export default Card;
+
+Card.propTypes = {
+	data: PropTypes.shape({
+		id: PropTypes.string.isRequired,
+	}).isRequired,
+	onSelectCard: PropTypes.func,
+	selectedCard: PropTypes.string,
+};

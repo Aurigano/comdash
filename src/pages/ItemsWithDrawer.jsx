@@ -7,30 +7,22 @@ import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import PersonIcon from "@mui/icons-material/Person";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowCircleLeftOutlinedIcon from "@mui/icons-material/ArrowCircleLeftOutlined";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-
 import Navbar from "./Navbar";
 import Chart from "../components/Chart";
 import Sidebar from "../components/Sidebar";
 import DataTable from "../components/DataTable";
 import { Button } from "@mui/material";
-import { cityData } from "./Home";
+import { cityData } from "../utils/cityData";
 
 function Items() {
 	const { id } = useParams();
@@ -52,7 +44,6 @@ function Items() {
 	};
 
 	const currentCity = cityData.find((city) => city.name === id);
-	console.log(currentCity);
 
 	return (
 		<div style={{ width: "100%", height: "100%" }}>
@@ -72,7 +63,8 @@ function Items() {
 									color="inherit"
 									aria-label="go last page"
 									onClick={() => {
-										navigate(`/`);
+										console.log("goback");
+										navigate(-1);
 									}}
 									edge="start"
 									sx={{
@@ -101,15 +93,41 @@ function Items() {
 						{/* <Typography variant="h6" noWrap component="div">
 							Persistent drawer
 						</Typography> */}
-						<IconButton
-							color="inherit"
-							aria-label="open drawer"
-							onClick={handleDrawerOpen}
-							edge="start"
-							sx={{ mr: 2, ...(open && { display: "none" }) }}
+						<Box
+							sx={{
+								display: "flex",
+								alignItems: "center",
+								marginRight: "12px",
+							}}
 						>
-							<PersonIcon />
-						</IconButton>
+							<IconButton
+								size="small"
+								alignSelf="flex-start"
+								sx={{ ml: 2 }}
+								aria-controls={
+									open ? "account-menu" : undefined
+								}
+								aria-haspopup="true"
+								aria-expanded={open ? "true" : undefined}
+							>
+								<LanguageOutlinedIcon sx={{ color: "white" }} />
+							</IconButton>
+							<IconButton
+								size="small"
+								alignSelf="flex-start"
+								sx={{ ml: 2 }}
+								aria-controls={
+									open ? "account-menu" : undefined
+								}
+								aria-haspopup="true"
+								aria-expanded={open ? "true" : undefined}
+							>
+								<AccountCircleOutlinedIcon
+									sx={{ color: "white" }}
+								/>
+							</IconButton>
+							<Typography variant="span"> user</Typography>
+						</Box>
 					</Toolbar>
 				</AppBar>
 				<Drawer
@@ -131,7 +149,7 @@ function Items() {
 							<IconButton
 								aria-label="go last page"
 								onClick={() => {
-									navigate(`/`);
+									navigate(-1);
 								}}
 							>
 								<ArrowCircleLeftOutlinedIcon
@@ -164,11 +182,17 @@ function Items() {
 							Item Cadet number:{selectedCard}{" "}
 						</Typography>
 
-						<Button variant="contained">
-							F'cast Stab - {selectedCard}
+						<Button
+							variant="contained"
+							sx={{ backgroundColor: "#295D8A" }}
+						>
+							F&apos;cast Stab - {selectedCard}
 						</Button>
-						<Button variant="contained">
-							F'cast Acc - {selectedCard}{" "}
+						<Button
+							variant="contained"
+							sx={{ backgroundColor: "#295D8A" }}
+						>
+							F&apos;cast Acc - {selectedCard}{" "}
 						</Button>
 						<Box
 							sx={{

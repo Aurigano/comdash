@@ -1,10 +1,11 @@
-import { CheckBox } from "@mui/icons-material";
-import { Box, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Card from "./Card";
-import React, { useState } from "react";
 import dummyData from "../utils/dummyData";
+import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
 
 function Sidebar({ selectedCard, onSelectCard }) {
+	const { id } = useParams();
 	return (
 		<div
 			style={{
@@ -14,6 +15,22 @@ function Sidebar({ selectedCard, onSelectCard }) {
 				backgroundColor: "#222222",
 			}}
 		>
+			<Box
+				sx={{
+					display: "flex",
+					flexDirection: "column",
+					gap: "10px",
+					padding: "12px",
+					color: "white",
+				}}
+			>
+				<Typography variant="h5" textAlign="left">
+					Commodity Stack
+				</Typography>
+				<Typography variant="h5" fontSize="18px" textAlign="left">
+					{id}
+				</Typography>
+			</Box>
 			<Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 				{dummyData.map((card) => {
 					return (
@@ -31,3 +48,8 @@ function Sidebar({ selectedCard, onSelectCard }) {
 }
 
 export default Sidebar;
+
+Sidebar.propTypes = {
+	onSelectCard: PropTypes.func,
+	selectedCard: PropTypes.string,
+};

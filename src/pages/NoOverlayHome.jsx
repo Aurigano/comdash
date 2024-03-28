@@ -1,4 +1,3 @@
-import React, { useRef, useState } from "react";
 import "./styles.css";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -41,33 +40,7 @@ const markers = [
 	},
 ];
 
-export default function Home() {
-	const [widgetPos, setWidgetPos] = useState("top");
-	const handlePosChange = (event) => {
-		setWidgetPos(event.target.value);
-	};
-	const overlayRef = useRef(null);
-	const mapRef = useRef(null);
-
-	const handleDocumentClick = (event) => {
-		if (overlayRef.current && overlayRef.current.contains(event.target)) {
-			return;
-		}
-	};
-
-	React.useEffect(() => {
-		document.addEventListener("click", handleDocumentClick);
-
-		return () => {
-			document.removeEventListener("click", handleDocumentClick);
-		};
-	}, []);
-
-	const isWidgetLeft = widgetPos === "left";
-	const isWidgetRight = widgetPos === "right";
-	//   const isWidgetTop = widgetPos === "top";
-	const isWidgetBottom = widgetPos === "bottom";
-
+export default function NoOverlayHome() {
 	return (
 		<div
 			id="container"
@@ -83,7 +56,6 @@ export default function Home() {
 				center={[30.2566, 8.7522]}
 				zoom={3.5}
 				zoomControl={false}
-				ref={mapRef}
 			>
 				{/* OPEN STREEN MAPS TILES */}
 
@@ -132,7 +104,6 @@ export default function Home() {
 			</MapContainer>
 			<div
 				id="overlay"
-				ref={overlayRef}
 				style={{
 					position: "absolute",
 					top: 0,
@@ -148,8 +119,8 @@ export default function Home() {
 			>
 				<Navbar
 					showPositionWidget={true}
-					widgetPos={widgetPos}
-					handlePosChange={handlePosChange}
+					// widgetPos={widgetPos}
+					// handlePosChange={handlePosChange}
 				/>
 				<div
 					id="content"
@@ -189,14 +160,14 @@ export default function Home() {
 						id="widgets-container"
 						style={{
 							width: "100%",
-							height: "86vh",
+							height: "fit-content",
 							display: "flex",
-							justifyContent: isWidgetLeft
-								? "flex-start"
-								: "flex-end",
-							alignItems: isWidgetBottom
-								? "flex-end"
-								: "flex-start",
+							// justifyContent: isWidgetLeft
+							// 	? "flex-start"
+							// 	: "flex-end",
+							// alignItems: isWidgetBottom
+							// 	? "flex-end"
+							// 	: "flex-start",
 						}}
 					>
 						<div
@@ -211,10 +182,10 @@ export default function Home() {
 								id="city-widgets"
 								style={{
 									display: "flex",
-									flexDirection:
-										isWidgetLeft || isWidgetRight
-											? "column"
-											: "row",
+									flexDirection: "row",
+									// isWidgetLeft || isWidgetRight
+									// 	? "column"
+									// : "row",
 									justifyContent: "space-between",
 									gap: "10px",
 									overflowX: "auto",
