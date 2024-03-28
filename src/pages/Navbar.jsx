@@ -139,7 +139,7 @@ function Navbar({ showPositionWidget = false, widgetPos, handlePosChange }) {
 						</Menu>
 					</>
 				)}
-				<Typography variant="span"> WebApp</Typography>
+				<Typography variant="span"> ComDash</Typography>
 			</Box>
 			<Box
 				sx={{
