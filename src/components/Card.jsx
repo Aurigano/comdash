@@ -17,7 +17,7 @@ function Card({ data, onSelectCard, selectedCard }) {
 				onSelectCard(data.id);
 			}}
 		>
-			<Checkbox />
+			<Checkbox checked={isSelected} />
 			{data.id}
 			<Button variant="contained">F'cast Stab</Button>
 			<Button variant="contained">F'cast Acc</Button>

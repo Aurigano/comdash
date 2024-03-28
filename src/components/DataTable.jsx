@@ -41,9 +41,24 @@ function DataTable({ id, selectedCard }) {
 
 	return (
 		<TableContainer component={Paper}>
-			<Table sx={{ minWidth: 650 }} aria-label="simple table">
+			<Table
+				sx={{
+					minWidth: 650,
+					backgroundColor: "#202732",
+					color: "white",
+					boxShadow: "none",
+					th: {
+						color: "white",
+						fontWeight: 800,
+					},
+					td: {
+						color: "white",
+					},
+				}}
+				aria-label="simple table"
+			>
 				<TableHead>
-					<TableRow>
+					<TableRow style={{ borderBottom: "2px solid #555555" }}>
 						<TableCell>Batch Name</TableCell>
 						<TableCell align="right">Q2 - 2022</TableCell>
 						<TableCell align="right">Q3 - 2022</TableCell>
@@ -67,6 +82,7 @@ function DataTable({ id, selectedCard }) {
 								"&:last-child td, &:last-child th": {
 									border: 0,
 								},
+								borderBottom: "2px solid #555555",
 							}}
 						>
 							<TableCell component="th" scope="row">

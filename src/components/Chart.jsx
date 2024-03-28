@@ -180,8 +180,6 @@ function Chart({ id, selectedCard }) {
 
 	return (
 		<div id="chart-container" style={{ width: "100%" }}>
-			{selectedCard}
-			Items - {id}
 			<Box sx={{ display: "flex", gap: 2 }}>
 				<FormControlLabel
 					control={
