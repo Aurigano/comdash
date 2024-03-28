@@ -17,8 +17,10 @@ Requiring sales data for both Historical and Forecast periods.
 **/** - Homepage
 
 Interactive map with 3 pins over specific locations, shows business data inside tooltip on hovering.
+
 Cards representing Cities with respective data and interactive mini chart to show sales and revenue trends at a glance.
 /2 - Navbar with ham menu on the left to select cards layout
+
 Clicking on a card takes to respective `items` page
 
 **/items/{city}** - Items page
