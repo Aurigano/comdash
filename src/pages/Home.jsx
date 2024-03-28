@@ -10,10 +10,10 @@ import { Box, Button } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { cityData } from "../utils/cityData";
 
-// create custom icon
+// custom icon for location pins
 const customIcon = new Icon({
 	iconUrl: "/assets/maps-and-flags.png",
-	iconSize: [38, 38], // size of the icon
+	iconSize: [38, 38],
 });
 
 // markers
@@ -65,7 +65,6 @@ export default function Home() {
 
 	const isWidgetLeft = widgetPos === "left";
 	const isWidgetRight = widgetPos === "right";
-	//   const isWidgetTop = widgetPos === "top";
 	const isWidgetBottom = widgetPos === "bottom";
 
 	return (
@@ -75,7 +74,6 @@ export default function Home() {
 				position: "relative",
 				width: "100vw",
 				height: "100vh",
-				// overflow: "hidden",
 			}}
 		>
 			<MapContainer
@@ -90,7 +88,6 @@ export default function Home() {
 				<TileLayer
 					attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
 					url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png?api_key=fb54ae75-4cd3-4614-bc57-6725ee42ef8f"
-					//   url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png"
 				/>
 
 				{/* Mapping through the markers */}
@@ -140,7 +137,6 @@ export default function Home() {
 					zIndex: 1000,
 					width: "100%",
 					height: "fit-content",
-					// pointerEvents: "none",
 				}}
 				onClick={(e) => {
 					e.stopPropagation();
@@ -172,9 +168,6 @@ export default function Home() {
 						<Button
 							variant="contained"
 							startIcon={<InfoOutlinedIcon />}
-							onClick={() => {
-								// Your click handler logic here
-							}}
 							sx={{
 								borderRadius: "50px",
 								height: "32px",

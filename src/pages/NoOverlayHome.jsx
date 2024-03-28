@@ -9,10 +9,10 @@ import { Box, Button } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { cityData } from "../utils/cityData";
 
-// create custom icon
+// custom icon for location pin
 const customIcon = new Icon({
 	iconUrl: "/assets/maps-and-flags.png",
-	iconSize: [38, 38], // size of the icon
+	iconSize: [38, 38],
 });
 
 // markers
@@ -48,7 +48,6 @@ export default function NoOverlayHome() {
 				position: "relative",
 				width: "100vw",
 				height: "100vh",
-				// overflow: "hidden",
 			}}
 		>
 			<MapContainer
@@ -62,7 +61,6 @@ export default function NoOverlayHome() {
 				<TileLayer
 					attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
 					url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png?api_key=fb54ae75-4cd3-4614-bc57-6725ee42ef8f"
-					//   url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png"
 				/>
 
 				{/* Mapping through the markers */}
@@ -111,17 +109,12 @@ export default function NoOverlayHome() {
 					zIndex: 1000,
 					width: "100%",
 					height: "fit-content",
-					// pointerEvents: "none",
 				}}
 				onClick={(e) => {
 					e.stopPropagation();
 				}}
 			>
-				<Navbar
-					showPositionWidget={true}
-					// widgetPos={widgetPos}
-					// handlePosChange={handlePosChange}
-				/>
+				<Navbar showPositionWidget={true} />
 				<div
 					id="content"
 					style={{
@@ -143,9 +136,6 @@ export default function NoOverlayHome() {
 						<Button
 							variant="contained"
 							startIcon={<InfoOutlinedIcon />}
-							onClick={() => {
-								// Your click handler logic here
-							}}
 							sx={{
 								borderRadius: "50px",
 								height: "32px",
@@ -162,12 +152,6 @@ export default function NoOverlayHome() {
 							width: "100%",
 							height: "fit-content",
 							display: "flex",
-							// justifyContent: isWidgetLeft
-							// 	? "flex-start"
-							// 	: "flex-end",
-							// alignItems: isWidgetBottom
-							// 	? "flex-end"
-							// 	: "flex-start",
 						}}
 					>
 						<div
@@ -183,9 +167,6 @@ export default function NoOverlayHome() {
 								style={{
 									display: "flex",
 									flexDirection: "row",
-									// isWidgetLeft || isWidgetRight
-									// 	? "column"
-									// : "row",
 									justifyContent: "space-between",
 									gap: "10px",
 									overflowX: "auto",
